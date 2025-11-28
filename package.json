@@ -11,6 +11,6 @@
         "vite": "^7.2.4"
     },
     "dependencies": {
-        "@rcade/sdk": "0.1.0"
+        "@rcade/sdk": "0.1.1"
     }
 }
