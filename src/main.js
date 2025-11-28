@@ -1,24 +1,23 @@
 import './style.css'
 import { PLAYER_1, PLAYER_2, STATUS, SYSTEM } from "@rcade/plugin-input-classic";
 
-
 // Create display container
 const container = document.createElement('div');
 container.id = 'input-display';
 container.style.cssText = `
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 5px;
+  left: 5px;
   background: rgba(0, 0, 0, 0.85);
   color: #0f0;
   font-family: 'Courier New', monospace;
-  font-size: 14px;
-  padding: 20px;
-  border-radius: 8px;
-  border: 2px solid #0f0;
+  font-size: 8px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #0f0;
   z-index: 9999;
-  line-height: 1.6;
-  min-width: 300px;
+  line-height: 1.2;
+  max-width: 310px;
 `;
 document.body.appendChild(container);
 
@@ -30,16 +29,16 @@ function formatBool(value) {
 
 // Format object recursively
 function formatObject(obj, indent = 0) {
-  const spaces = '  '.repeat(indent);
+  const spaces = ' '.repeat(indent);
   let html = '';
 
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'object' && value !== null) {
-      html += `${spaces}${key}: {\n`;
+      html += `${spaces}${key}:{`;
       html += formatObject(value, indent + 1);
-      html += `${spaces}}\n`;
+      html += `}\n`;
     } else {
-      html += `${spaces}${key}: ${formatBool(value)}\n`;
+      html += `${spaces}${key}:${formatBool(value)} `;
     }
   }
 
@@ -49,24 +48,24 @@ function formatObject(obj, indent = 0) {
 // Update display every frame
 function updateDisplay() {
   container.innerHTML = `
-<div style="margin-bottom: 15px; border-bottom: 1px solid #0f0; padding-bottom: 10px;">
-  <strong style="color: #fff;">STATUS</strong>
-  <pre style="margin: 5px 0 0 0;">${formatObject(STATUS)}</pre>
+<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
+  <strong style="color: #fff; font-size: 9px;">STATUS</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(STATUS)}</pre>
 </div>
 
-<div style="margin-bottom: 15px; border-bottom: 1px solid #0f0; padding-bottom: 10px;">
-  <strong style="color: #fff;">SYSTEM</strong>
-  <pre style="margin: 5px 0 0 0;">${formatObject(SYSTEM)}</pre>
+<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
+  <strong style="color: #fff; font-size: 9px;">SYSTEM</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(SYSTEM)}</pre>
 </div>
 
-<div style="margin-bottom: 15px; border-bottom: 1px solid #0f0; padding-bottom: 10px;">
-  <strong style="color: #fff;">PLAYER_1</strong>
-  <pre style="margin: 5px 0 0 0;">${formatObject(PLAYER_1)}</pre>
+<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
+  <strong style="color: #fff; font-size: 9px;">P1</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(PLAYER_1)}</pre>
 </div>
 
 <div>
-  <strong style="color: #fff;">PLAYER_2</strong>
-  <pre style="margin: 5px 0 0 0;">${formatObject(PLAYER_2)}</pre>
+  <strong style="color: #fff; font-size: 9px;">P2</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(PLAYER_2)}</pre>
 </div>
   `.trim();
 
