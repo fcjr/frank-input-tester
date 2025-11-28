@@ -6,8 +6,6 @@ document.querySelector('#app').innerHTML = `
   </div>
 `
 
-setupCounter(document.querySelector('#counter'))
-
 import { PluginChannel } from "@rcade/sdk";
 
 const div = document.querySelector("#app").children[0];
