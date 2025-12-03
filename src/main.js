@@ -1,5 +1,6 @@
 import './style.css'
 import { PLAYER_1, PLAYER_2, STATUS, SYSTEM } from "@rcade/plugin-input-classic";
+import { PLAYER_1 as SPINNER_P1, PLAYER_2 as SPINNER_P2, STATUS as SPINNER_STATUS } from "@rcade/plugin-input-spinners";
 
 // Create display container
 const container = document.createElement('div');
@@ -63,9 +64,24 @@ function updateDisplay() {
   <pre style="margin: 2px 0 0 0;">${formatObject(PLAYER_1)}</pre>
 </div>
 
-<div>
+<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
   <strong style="color: #fff; font-size: 9px;">P2</strong>
   <pre style="margin: 2px 0 0 0;">${formatObject(PLAYER_2)}</pre>
+</div>
+
+<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
+  <strong style="color: #fff; font-size: 9px;">SPINNERS STATUS</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(SPINNER_STATUS)}</pre>
+</div>
+
+<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
+  <strong style="color: #fff; font-size: 9px;">SPINNER P1</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(SPINNER_P1)}</pre>
+</div>
+
+<div>
+  <strong style="color: #fff; font-size: 9px;">SPINNER P2</strong>
+  <pre style="margin: 2px 0 0 0;">${formatObject(SPINNER_P2)}</pre>
 </div>
   `.trim();
 
