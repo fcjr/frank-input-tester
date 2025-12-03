@@ -7,18 +7,18 @@ const container = document.createElement('div');
 container.id = 'input-display';
 container.style.cssText = `
   position: fixed;
-  top: 5px;
-  left: 5px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.85);
   color: #0f0;
   font-family: 'Courier New', monospace;
   font-size: 8px;
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #0f0;
+  padding: 3px;
   z-index: 9999;
-  line-height: 1.2;
-  max-width: 310px;
+  line-height: 1.0;
+  overflow: auto;
 `;
 document.body.appendChild(container);
 
@@ -48,40 +48,36 @@ function formatObject(obj, indent = 0) {
 
 // Update display every frame
 function updateDisplay() {
+  // Reset knobs when both start buttons are pressed simultaneously
+  if (SYSTEM.ONE_PLAYER && SYSTEM.TWO_PLAYER) {
+    SPINNER_P1.SPINNER.reset();
+    SPINNER_P2.SPINNER.reset();
+  }
+
   container.innerHTML = `
-<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
-  <strong style="color: #fff; font-size: 9px;">STATUS</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(STATUS)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">STATUS</strong> <span>${formatObject(STATUS)}</span>
 </div>
-
-<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
-  <strong style="color: #fff; font-size: 9px;">SYSTEM</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(SYSTEM)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">SYSTEM</strong> <span>${formatObject(SYSTEM)}</span>
 </div>
-
-<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
-  <strong style="color: #fff; font-size: 9px;">P1</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(PLAYER_1)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">P1</strong> <span>${formatObject(PLAYER_1)}</span>
 </div>
-
-<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
-  <strong style="color: #fff; font-size: 9px;">P2</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(PLAYER_2)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">P2</strong> <span>${formatObject(PLAYER_2)}</span>
 </div>
-
-<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
-  <strong style="color: #fff; font-size: 9px;">SPINNERS STATUS</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(SPINNER_STATUS)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">SPINNERS</strong> <span>${formatObject(SPINNER_STATUS)}</span>
 </div>
-
-<div style="margin-bottom: 3px; border-bottom: 1px solid #0f0; padding-bottom: 2px;">
-  <strong style="color: #fff; font-size: 9px;">SPINNER P1</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(SPINNER_P1)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">SPINNER P1</strong> <span>${formatObject(SPINNER_P1)}</span>
 </div>
-
-<div>
-  <strong style="color: #fff; font-size: 9px;">SPINNER P2</strong>
-  <pre style="margin: 2px 0 0 0;">${formatObject(SPINNER_P2)}</pre>
+<div style="margin-bottom: 1px; border-bottom: 1px solid #0f0; padding-bottom: 1px;">
+  <strong style="color: #fff;">SPINNER P2</strong> <span>${formatObject(SPINNER_P2)}</span>
+</div>
+<div style="margin-top: 3px; padding: 2px; background: ${SYSTEM.ONE_PLAYER && SYSTEM.TWO_PLAYER ? '#ff0' : '#333'}; color: ${SYSTEM.ONE_PLAYER && SYSTEM.TWO_PLAYER ? '#000' : '#0f0'}; text-align: center;">
+  ${SYSTEM.ONE_PLAYER && SYSTEM.TWO_PLAYER ? 'RESETTING KNOBS' : 'Press both START to reset knobs'}
 </div>
   `.trim();
 
