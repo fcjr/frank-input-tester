@@ -5,12 +5,15 @@
     "description": "rose-sample",
     "type": "module",
     "scripts": {
-        "build": "vite build"
+        "build": "vite build",
+        "dev": "concurrently \"vite --port 5173 --strictPort\" \"rcade dev http://localhost:5173\""
     },
     "devDependencies": {
+        "concurrently": "^9.2.1",
+        "rcade": "^0.0.25",
         "vite": "^7.2.4"
     },
     "dependencies": {
-        "@rcade/plugin-input-classic": "^0.2.1"
+        "@rcade/plugin-input-classic": "^0.2.2"
     }
 }

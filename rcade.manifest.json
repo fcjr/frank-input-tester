@@ -1,15 +1,16 @@
 {
-  "name": "rose-sample",
-  "display_name": "Classic Input Tester",
+  "name": "frank-sample",
+  "display_name": "Classic Input Tester with Spinner!",
   "description": "rose-sample",
   "visibility": "public",
-  "authors": {
-    "display_name": "Temp"
-  },
-  "dependencies": [
+  "authors": [
     {
-      "name": "@rcade/input-classic",
-      "version": "1.0.0"
+      "display_name": "Frank Chiarulli Jr.",
+      "recurse_id": 6859
     }
-  ]
+  ],
+  "remix_of": {
+    "name": "rose-sample",
+    "version": "1.0.15"
+  }
 }
