@@ -49,6 +49,9 @@ function formatObject(obj, indent = 0) {
 let SPINNER_P1_DELTA_TOTAL = 0;
 let SPINNER_P2_DELTA_TOTAL = 0;
 
+let SPINNER_P1_DELTA_MAX = 0;
+let SPINNER_P2_DELTA_MAX = 0;
+
 // Update display every frame
 function updateDisplay() {
   // Reset knobs when both start buttons are pressed simultaneously
@@ -63,9 +66,11 @@ function updateDisplay() {
   const spinner_P1 = SPINNER_P1.SPINNER;
   const delta_P1 = spinner_P1.step_delta;
   SPINNER_P1_DELTA_TOTAL += delta_P1;
+  SPINNER_P1_DELTA_MAX = Math.max(delta_P1, SPINNER_P1_DELTA_MAX);
 
   const DEBUG_SPINNER_P1 = {
     delta: delta_P1,
+    max_delta: SPINNER_P1_DELTA_MAX,
     total_d: SPINNER_P1_DELTA_TOTAL,
     angle_16: SPINNER_P1_DELTA_TOTAL / 16,
     angle_64: SPINNER_P1_DELTA_TOTAL / 64,
@@ -77,9 +82,11 @@ function updateDisplay() {
   const spinner_P2 = SPINNER_P2.SPINNER;
   const delta_P2 = spinner_P2.step_delta;
   SPINNER_P2_DELTA_TOTAL += delta_P2;
+  SPINNER_P2_DELTA_MAX = Math.max(delta_P1, SPINNER_P1_DELTA_MAX);
 
   const DEBUG_SPINNER_P2 = {
     delta: delta_P2,
+    max_delta: SPINNER_P2_DELTA_MAX,
     total_d: SPINNER_P2_DELTA_TOTAL,
     angle_16: SPINNER_P2_DELTA_TOTAL / 16,
     angle_64: SPINNER_P2_DELTA_TOTAL / 64,
