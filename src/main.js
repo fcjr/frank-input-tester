@@ -50,7 +50,7 @@ function isSpinner(obj) {
 function formatSpinner(spinner, indent = 0) {
   const spaces = ' '.repeat(indent);
   // Access _stepDelta directly to avoid consuming it (step_delta getter resets to 0 after read)
-  return `${spaces}_stepDelta: ${formatValue(spinner._stepDelta)} ` +
+  return `${spaces}_stepDelta: ${formatValue(spinner.step_delta)} ` +
          `${spaces}angle: ${formatValue(spinner.angle)} ` +
          `${spaces}step_resolution: ${formatValue(spinner.step_resolution)} `;
 }
