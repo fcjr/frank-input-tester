@@ -39,6 +39,22 @@ function formatValue(value) {
   }
 }
 
+// Check if object is a Spinner (has the spinner getter properties)
+function isSpinner(obj) {
+  return obj && typeof obj === 'object' &&
+    '_stepDelta' in obj && '_angle' in obj &&
+    'angle' in obj && 'step_resolution' in obj;
+}
+
+// Format spinner object using its getters (Object.entries misses getters!)
+function formatSpinner(spinner, indent = 0) {
+  const spaces = ' '.repeat(indent);
+  // Access _stepDelta directly to avoid consuming it (step_delta getter resets to 0 after read)
+  return `${spaces}_stepDelta: ${formatValue(spinner._stepDelta)} ` +
+         `${spaces}angle: ${formatValue(spinner.angle)} ` +
+         `${spaces}step_resolution: ${formatValue(spinner.step_resolution)} `;
+}
+
 // Format object recursively
 function formatObject(obj, indent = 0) {
   const spaces = ' '.repeat(indent);
@@ -46,9 +62,15 @@ function formatObject(obj, indent = 0) {
 
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'object' && value !== null) {
-      html += `${spaces}${key}: {`;
-      html += formatObject(value, indent + 1);
-      html += `}\n`;
+      if (isSpinner(value)) {
+        html += `${spaces}${key}: {`;
+        html += formatSpinner(value, indent + 1);
+        html += `}\n`;
+      } else {
+        html += `${spaces}${key}: {`;
+        html += formatObject(value, indent + 1);
+        html += `}\n`;
+      }
     } else {
       html += `${spaces}${key}: ${formatValue(value)} `;
     }
