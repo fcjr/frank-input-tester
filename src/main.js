@@ -57,11 +57,11 @@ function updateDisplay() {
     SPINNER_P2.SPINNER.reset();
   }
 
-  const delta_P1 = SPINNER_P1.step_delta();
+  const delta_P1 = SPINNER_P1.step_delta;
   SPINNER_P1_DELTA_TOTAL += delta_P1;
 
   const DEBUG_SPINNER_P1 = {
-    angle: SPINNER_P1.angle(),
+    angle: SPINNER_P1.angle,
     delta: delta_P1,
     total_d: SPINNER_P1_DELTA_TOTAL,
     angle_16: SPINNER_P1_DELTA_TOTAL / 16,
@@ -70,11 +70,11 @@ function updateDisplay() {
     angle_1024: SPINNER_P1_DELTA_TOTAL / 1024,
   }
 
-  const delta_P2 = SPINNER_P1.step_delta();
+  const delta_P2 = SPINNER_P1.step_delta;
   SPINNER_P2_DELTA_TOTAL += delta_P2;
 
   const DEBUG_SPINNER_P2 = {
-    angle: SPINNER_P2.angle(),
+    angle: SPINNER_P2.angle,
     delta: delta_P2,
     total_d: SPINNER_P2_DELTA_TOTAL,
     angle_16: SPINNER_P2_DELTA_TOTAL / 16,
