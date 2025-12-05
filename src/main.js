@@ -28,6 +28,17 @@ function formatBool(value) {
   return `<span style="color: ${color}">${value}</span>`;
 }
 
+// Format value based on type
+function formatValue(value) {
+  if (typeof value === 'boolean') {
+    return formatBool(value);
+  } else if (typeof value === 'number') {
+    return `<span style="color: #ff0">${value}</span>`;
+  } else {
+    return `<span style="color: #0ff">${value}</span>`;
+  }
+}
+
 // Format object recursively
 function formatObject(obj, indent = 0) {
   const spaces = ' '.repeat(indent);
@@ -39,7 +50,7 @@ function formatObject(obj, indent = 0) {
       html += formatObject(value, indent + 1);
       html += `}\n`;
     } else {
-      html += `${spaces}${key}: ${formatBool(value)} `;
+      html += `${spaces}${key}: ${formatValue(value)} `;
     }
   }
 
