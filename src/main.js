@@ -55,9 +55,6 @@ function updateDisplay() {
   if (SYSTEM.ONE_PLAYER && SYSTEM.TWO_PLAYER) {
     SPINNER_P1.SPINNER.reset();
     SPINNER_P2.SPINNER.reset();
-
-    SPINNER_P1_DELTA_TOTAL = 0;
-    SPINNER_P2_DELTA_TOTAL = 0;
   }
 
   const spinner_P1 = SPINNER_P1.SPINNER;
@@ -65,13 +62,13 @@ function updateDisplay() {
   SPINNER_P1_DELTA_TOTAL += delta_P1;
 
   const DEBUG_SPINNER_P1 = {
+    angle: spinner_P1.angle,
     delta: delta_P1,
     total_d: SPINNER_P1_DELTA_TOTAL,
     angle_16: SPINNER_P1_DELTA_TOTAL / 16,
     angle_64: SPINNER_P1_DELTA_TOTAL / 64,
     angle_512: SPINNER_P1_DELTA_TOTAL / 512,
     angle_1024: SPINNER_P1_DELTA_TOTAL / 1024,
-    angle: spinner_P1.angle,
   }
 
   const spinner_P2 = SPINNER_P2.SPINNER;
@@ -79,13 +76,13 @@ function updateDisplay() {
   SPINNER_P2_DELTA_TOTAL += delta_P2;
 
   const DEBUG_SPINNER_P2 = {
+    angle: spinner_P2.angle,
     delta: delta_P2,
     total_d: SPINNER_P2_DELTA_TOTAL,
     angle_16: SPINNER_P2_DELTA_TOTAL / 16,
     angle_64: SPINNER_P2_DELTA_TOTAL / 64,
     angle_512: SPINNER_P2_DELTA_TOTAL / 512,
     angle_1024: SPINNER_P2_DELTA_TOTAL / 1024,
-    angle: spinner_P2.angle,
   }
 
   //16,64,512,1024
